@@ -46,9 +46,6 @@ dynamic compactMiddleware<St>(
 
       compactAction.setRequestStatus(RequestStatus(data: res));
       next(compactAction);
-
-      compactAction.after();
-      return;
     }
   } catch (e) {
     compactAction.setRequestStatus(RequestStatus(error: e));
@@ -57,9 +54,8 @@ dynamic compactMiddleware<St>(
     if (onError != null) {
       onError(e, store.dispatch);
     }
-    return;
+  } finally {
+    next(compactAction);
+    compactAction.after();
   }
-
-  next(compactAction);
-  compactAction.after();
 }
