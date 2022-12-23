@@ -55,6 +55,7 @@ dynamic compactMiddleware<St>(
       onError(e, store.dispatch);
     }
   } finally {
+    compactAction.setRequestStatus(RequestStatus());
     next(compactAction);
     compactAction.after();
   }

@@ -49,6 +49,8 @@ class RequestStatus {
 
   bool get hasError => error != null;
 
+  bool get success => data != null;
+
   RequestStatus({this.loading = false, this.data, this.error});
 }
 
